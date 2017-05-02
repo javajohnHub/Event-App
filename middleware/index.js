@@ -207,7 +207,7 @@ middlewareObj.validateDate = function (req,res,next) {
 
 // Deletes file from server
 function deleteUploadedFile(file, next) {
-    console.log("In delete uploaded file");
+    console.log("file deleted");
     if(file) {
         fs.unlink(file.path, function(err) {
            if(err) {
@@ -268,7 +268,7 @@ function time(data, field, message, args, get) {
         if(!fieldValue) {
           return resolve('validation skipped')
         }
-        var patt = new RegExp("^(([0-9][0-2]?)|([0][0-9])):[0-5][0-9] [APap][mM]$"); 
+        var patt = new RegExp("^(([0-9][0-2]?)|([0][0-9])):[0-5][0-9] [APap][mM]$");
         var isTime = patt.test(fieldValue);
         if(isTime) {
             resolve("Valid time");
@@ -285,7 +285,7 @@ function postalcode(data, field, message, args, get) {
         if(!fieldValue) {
           return resolve('validation skipped')
         }
-        var postalCodePatt = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+        var postalCodePatt = /^\d{5}(?:[-\s]\d{4})?$/;
         if(fieldValue.match(postalCodePatt)) {
             resolve("Valid Postal Code");
         } else {
@@ -301,9 +301,7 @@ function canadianprovince(data, field, message, args, get) {
         if(!fieldValue) {
           return resolve('validation skipped')
         }
-        var canadianProvinces = ['ON', 'AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'PE', 'QC', 'SK', 'YT', 
-                                'ONTARIO', "ALBERTA", "BRITISH COLUMBIA", "MANITOBA", "NEW BRUNSWICK", "NEWFOUNDLAND AND LABRADOR",
-                                'NOVA SCOTIA', 'NORTHWEST TERRITORIES', 'NUNAVUT', 'PRINCE EDWARD ISLAND', 'QUEBEC', 'SASKATCHEWAN', 'YUKON'];
+        var canadianProvinces = ['OH', 'MI'];
         var prov = fieldValue.toUpperCase();
         if(canadianProvinces.indexOf(prov) === -1) {
             reject(message);

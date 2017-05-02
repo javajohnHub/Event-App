@@ -1,7 +1,7 @@
 /***************************************************/
 /********************* SETUP ***********************/
 /***************************************************/
-
+require('dotenv').config();
 var express             = require("express"),
     app                 = express(), 
     bodyParser          = require("body-parser"),
@@ -71,7 +71,7 @@ app.use("/user", userRoutes);
 app.locals.moment = moment; 
 
 // Image Storage
-app.locals.awspath = "https://s3.ca-central-1.amazonaws.com/eventfulcanada/";
+app.locals.awspath = "https://s3.us-east-2.amazonaws.com/event-app-bucket-test/";
 
 // Error Handling
 
@@ -122,4 +122,5 @@ app.use( function(err, req, res, next) {
 
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("Event App Server Has Started!");
+
 });

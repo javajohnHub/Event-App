@@ -268,7 +268,7 @@ function eventLocationSetup() {
     });
     
     // Setup Google Autocomplete. Restrict Searches to Canada
-    var options = { componentRestrictions: {country: 'ca'} };
+    var options = { componentRestrictions: {country: 'us'} };
     var autocomplete = new google.maps.places.Autocomplete($('#location')[0], options);
     
     // Update Address Details and Map when user types address

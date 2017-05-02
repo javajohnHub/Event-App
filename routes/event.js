@@ -20,7 +20,7 @@ var express         = require("express"),
 aws.config.update({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    region: 'ca-central-1'
+    region: 'us-east-2'
 });
 
 var s3 = new aws.S3();
@@ -36,17 +36,18 @@ var upload = multer({
         }
     })
 });
-
-/*var storage =   multer.diskStorage({
+/*
+var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './public/uploads/eventImages');
   },
   filename: function (req, file, callback) {
-    callback(null, req.user._id + Date.now());
+      var fileExtension = file.originalname.split(".")[1];
+    callback(null, req.user._id + Date.now() + "." + fileExtension);
   }
-});*/
+});
 
-/*var upload = multer({storage: storage});*/
+var upload = multer({storage: storage});*/
 
 
 /* --------------------------- INDEX ROUTE --------------------------- */
